@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-busybox-testing-namespace-specific-pod
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: comicbox
+
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          a: b 
+      podSelector:
+        matchLabels:
+          app: busybox

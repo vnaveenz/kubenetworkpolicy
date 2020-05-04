@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: all-pods-within-namespace-port-isolation
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: comicbox
+  ingress:
+  - from:
+    - podSelector: {}
+    ports:
+    - protocol: TCP
+      port: 3000
